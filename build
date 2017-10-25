@@ -1,0 +1,4 @@
+#!/bin/bash
+php log2.php
+g++ linux.cpp cylinder.cpp log.cpp -D LINUX -g -o linux
+

@@ -1,0 +1,130 @@
+TODO
+
+1.0 completed items now in TODO-1.0
+1.1 completed items now in TODO-1.1
+
+TODO for:
+
+1.1
+
+Awaiting more info from users:
+- 36-2-2-2 V6 application
+
+Coded awaiting testing or incomplete:
+- When closed loop idle is enabled, make Idle Timing RPM correction optionally
+  depend on that instead of the normal conditions for coming on. 
+- Understand/fix internal-knock "weird readings when cold" - (init validation added)
+- Audi flywheel mode (James, P2 - awaiting more testing)
+- Nissan CAS, Optispark mode (James, P2 - new code awaiting more testing)
+- NGC 6cyl cam sync - decoder done, but waiting on phasing data (James, P7)
+- More tri-tach options if possible
+- GM7X seq testing / re-write decoder (part done)
+- Chrysler 2.2/2.5 sync/misfire issue (part done - on hold)
+
+1.2 (some of these will get pushed back to 1.3)
+
+1.2 Ken items
+(done)
+
+1.2 James items
+(done)
+
+Completed:
+- Resolve duplication of "TPS accel" and "TPSaccel" outpc.tpsaccel and outpc.tps_accel (Ken) (Nothing to do for this. I created my own variables b/c I wanted
+	      mine in %, but the standard algorithm expects and outputs in
+	      milliseconds, so they're incompatible).
+- Allow MAP logging to report a full cycle at low rpms
+- Make MAF 'correction' table more sensible.
+- Merge MAF calibration and correction
+- Merge built-in baro curve with correction
+- Review/rename menus and datalog fields for consistency and intuitive naming (mostly)
+- Test mode to use new TS buttons feature
+- Maximum VSS in launch
+- Overdwell - regular spark
+- Overdwell - rotary trailing
+- Twin trigger - allow 2 stroke
+- 'k' command for flash calibration tables too
+- Twin trigger - allow "twin-trigger cam"
+- TC perfect run rpm (coded but untested)
+- TC include boost control (coded but untested)
+- Status bytes to report input and output ports/pins.
+- Make old AE in 0.01s units instead of 0.1s. Allow ignition events as an option.
+- Monitor AFR for sane values and movement. Turn off EGOcor if out of range or stuck.
+- Similar monitoring for other sensors.
+- Check engine light
+- Table blending / algo blending
+- Phase sensing by MAP sensor (tested on engine)
+- Cranking PW% curve blending (for flex)
+- Consider MAFflow lookup - MS2/BG code uses an unsignedX flag on intrp1dc but that's not present in MS2 or MS3.
+- Make loader look for ms3pro.s19 as well
+
+1.3
+- EGO backpressure correction table/curve.
+- WUE vs. RPM (if required?)
+- Transient timing?
+- Baro from WOT?
+- Inj dead time test mode. Swaps from seq to two pulses in quick succession (to maintain inj timing) (James, P8)
+- Nissan V8 mode
+- Consider more Nissan CAS modes
+- Mazda6 2.3 VVT (James, P7)
+- Make outpc variable size and allow TS to select what goes in.
+- Firmware loader just sits there waiting for reply if e0 00 3e gets gobbled up (does timeout, but takes too long)
+- Mini Siamese injection (James and Ken, P10 if at all)
+- Air temp correction - new method? (what new method?) (James/Ken P4)
+- Use can_t()
+- Handle BMW extra-complicated VANOS
+- MAF burnoff
+- Double MAF range.
+
+1.3 Ken items
+- Idle enhancements. Replace min/max RPM settings with single input sensitivity
+  setting.  Refine/simplify PID engagement settings if possible. (Ken, P1)
+- Make CL stepper idle relative instead of adding to an absolute number. This
+  way if steps are lost, it doesn't matter. Should make moving only work
+  better.
+- Boost control changes to make it spool faster and more accurately. (Ken)
+- Fuel cut changes based on RPMdot for bringing fuel back on. (Ken)
+- S5/FD RX7 OMP support. (Ken)
+- Pot based boost... dial it up or down. (Ken, P5)
+- Alternator Control (Ken)
+- EGO looptime table with sensor delay setting.
+
+1.3 James items
+- SDcard readback code needs timeout and reset. (already there but not working as expected?)
+- Race profiles (can include boost) to alter launch, nitrous, boost per user input.
+- Respond to EGT per channel (James, P8)
+- Long term trim in DFLASH
+    - Added flash mechanism with redundant sectors (James)
+    - Populate RAM trim table (James/Ken) 
+- Spark/fuel cut/retard per Wes' suggestions
+- Andy/James AE ideas (partial)
+- Fuel pressure sensor calc (to monitor relative pressure)
+- Oil pressure? (or leave to hardware?)
+- Continue to extend CEL / limp-leonard modes
+- Fuel temperature (more than LPG)
+- AE type event at end of Overrun fuel cut
+- Convert other software PWMs to new method.
+
+2.0
+- New ReqFuel
+- Rewrite MAF - (really?)
+- Ensure CAN timeout and reset behave correctly. (might skip this one)
+- Idle speed control enhancements (separate algorithm from output, add
+  more model-based valve control, CL advance based speed control, etc..) (Ken)
+- Add angle clock (Ken)
+- Rudimentary pre-emptive multitasking (Ken)
+- Alpha-Beta-Gamma
+- Lambda
+
+For review:
+- Monitor/graph 'trigger' time to monitor power per cylinder. ( 
+- Smooth return from over-run fuel cut using retarded timing 0deg ----> normal
+  Change this to: Anything we can do to smooth engagement and disengagement of
+  overrun.
+- Gear/speed related timing
+- Better dual fuel support.
+- Multi-spark
+- Boost limited by CLT
+- Baro based timing adjustment
+- SD card format utility
+- "Capture" mode to monitor and capture PW, spark timing, inj timing, VVT timing from engine running on other ECU
